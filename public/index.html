@@ -10,44 +10,63 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Knowledge Base Chatbot</h1>
-            <p>Upload a document to build your knowledge base, then ask questions.</p>
+    <div class="app-container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1>Knowledge Base</h1>
+                <p>Upload documents and manage your files</p>
+            </div>
+            
             <div class="upload-section">
                 <label for="file-upload" class="file-upload-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                     <span>Select File</span>
                 </label>
-                <input type="file" id="file-upload" accept=".txt,.md,.js,.pdf">
+                <input type="file" id="file-upload" accept=".txt,.md,.js,.pdf,.csv,.json,.xlsx">
                 <button id="upload-button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                     <span>Upload & Index</span>
                 </button>
-                <span id="upload-status"></span>
+                <div id="upload-status" class="upload-status"></div>
             </div>
-        </header>
-        <main>
-            <div class="chat-window">
-                <div id="chat-history" class="chat-history">
-                    <div class="message bot-message">
-                        <p>Hello! I'm ready to answer your questions. Upload a document to get started.</p>
-                    </div>
+            
+            <div class="file-management-section">
+                <h3>Uploaded Files</h3>
+                <div id="file-list" class="file-list">
+                    <div class="loading-files">Loading files...</div>
                 </div>
             </div>
-            <div class="input-area">
-                <textarea id="question-input" placeholder="Ask a question about the document..."></textarea>
-                <button id="ask-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                </button>
+        </div>
+
+        <!-- Right Chat Area -->
+        <div class="chat-container">
+            <div class="chat-main">
+                <div class="chat-window">
+                    <div id="chat-history" class="chat-history">
+                        <div class="message bot-message">
+                            <p>Hello! I'm ready to answer your questions. Upload a document to get started.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-area">
+                    <textarea id="question-input" placeholder="Ask a question about the document..."></textarea>
+                    <button id="ask-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    </button>
+                </div>
+                
+                <div id="loading-indicator" class="loading-indicator" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Thinking...</p>
+                </div>
             </div>
-            <div id="loading-indicator" class="loading-indicator" style="display: none;">
-                <div class="spinner"></div>
-                <p>Thinking...</p>
+            
+            <div class="chat-footer">
+                <p>Powered by LangChain and Hugging Face</p>
             </div>
-        </main>
-        <footer>
-            <p>Powered by LangChain and Gemma</p>
-        </footer>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
